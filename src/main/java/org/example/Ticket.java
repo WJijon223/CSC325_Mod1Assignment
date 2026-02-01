@@ -1,7 +1,5 @@
 package org.example;
 
-import static sun.swing.MenuItemLayoutHelper.max;
-
 public abstract class Ticket {
     private final int id;
     private final String requester;
@@ -37,18 +35,18 @@ public abstract class Ticket {
     // -------------------------------
 
     public int estimateResolutionHours() {
-        int result = (6 - priority) * 2 + daysOpen;
-        return max(1, result);
+        int base = (6 - priority) * 2 + daysOpen;
+        return Math.max(1, base);
     }
 
     public int estimateResolutionHours(int complexityFactor) {
         int base = (6 - priority) * 2 + daysOpen;
-        return max(1, base * complexityFactor);
+        return Math.max(1, base * complexityFactor);
     }
 
     public int estimateResolutionHours(int complexityFactor, int afterHoursPenalty)  {
         int base = (6 - priority) * 2 + daysOpen;
-        return max(1, base * complexityFactor + afterHoursPenalty);
+        return Math.max(1, base * complexityFactor + afterHoursPenalty);
     }
 
     @Override
